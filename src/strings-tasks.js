@@ -38,8 +38,9 @@ function getStringLength(value) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  return value instanceof String;
+  return typeof value === 'string' ? true : value instanceof String;
 }
+// console.log(isString(new String('test')));
 
 /**
  * Returns the result of concatenation of two strings.
@@ -56,7 +57,6 @@ function isString(value) {
 function concatenateStrings(value1, value2) {
   return value1.concat(value2);
 }
-// console.log('sw', '1');
 
 /**
  * Returns the first character of the given string.
@@ -69,9 +69,11 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('cat') => 'c'
  *   getFirstChar('') => ''
  */
-function getFirstChar(/* value */) {
-  throw new Error('Not implemented');
+function getFirstChar(value) {
+  return typeof value === 'string' ? value[0] : '';
 }
+
+// console.log(getFirstChar('j;lj'));
 
 /**
  * Removes leading and trailing whitespace characters from the string.
@@ -84,9 +86,10 @@ function getFirstChar(/* value */) {
  *   removeLeadingAndTrailingWhitespaces('cat ') => 'cat'
  *   removeLeadingAndTrailingWhitespaces('\t\t\tHello, World! ') => 'Hello, World!'
  */
-function removeLeadingAndTrailingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingAndTrailingWhitespaces(value) {
+  return value.trim();
 }
+// console.log(removeLeadingAndTrailingWhitespaces('   jkjuh    '));
 
 /**
  * Removes only leading whitespace characters from the string.
@@ -99,8 +102,8 @@ function removeLeadingAndTrailingWhitespaces(/* value */) {
  *   removeLeadingWhitespaces('cat ') => 'cat '
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
-function removeLeadingWhitespaces(/* value */) {
-  throw new Error('Not implemented');
+function removeLeadingWhitespaces(value) {
+  return value.trim();
 }
 
 /**
