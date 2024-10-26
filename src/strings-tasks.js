@@ -246,9 +246,14 @@ function endsWith(str, substr) {
  *   formatTime(0, 45) => "00:45"
  *   formatTime(0, 0) => "00:00"
  */
-function formatTime(/* minutes, seconds */) {
-  throw new Error('Not implemented');
+function formatTime(minutes, seconds) {
+  // const mins = minutes < 10 ? '0'.concat(minutes) : minutes;
+  // const secs = seconds < 10 ? '0'.concat(seconds) : seconds;
+  return `${minutes < 10 ? '0'.concat(minutes) : minutes}:${
+    seconds < 10 ? '0'.concat(seconds) : seconds
+  }`;
 }
+// console.log(formatTime(5, 30));
 
 /**
  * Returns a string in reverse order.
@@ -260,8 +265,9 @@ function formatTime(/* minutes, seconds */) {
  *   reverseString('abcdef') => 'fedcba'
  *   reverseString('12345') => '54321'
  */
-function reverseString(/* str */) {
-  throw new Error('Not implemented');
+function reverseString(str) {
+  const string = str.split('');
+  return string.reverse().join('');
 }
 
 /**
@@ -275,9 +281,13 @@ function reverseString(/* str */) {
  *   orderAlphabetically('textbook') => 'bekoottx'
  *   orderAlphabetically('abc123xyz') => '123abcxyz'
  */
-function orderAlphabetically(/* str */) {
-  throw new Error('Not implemented');
+function orderAlphabetically(str) {
+  const string = str.split('');
+
+  return string.sort((a, b) => a.localeCompare(b)).join('');
 }
+
+// console.log(orderAlphabetically('webmaster'));
 
 /**
  * Checks if a given string contains a specified substring.
@@ -291,9 +301,10 @@ function orderAlphabetically(/* str */) {
  *   containsSubstring('JavaScript is Fun', 'Python') => false
  *   containsSubstring('12345', '34') => true
  */
-function containsSubstring(/* str, substring */) {
-  throw new Error('Not implemented');
+function containsSubstring(str, substring) {
+  return str.includes(substring);
 }
+// console.log(containsSubstring('Hello, World!', 'Python'));
 
 /**
  * Returns the number of vowels in the string.
@@ -309,8 +320,15 @@ function containsSubstring(/* str, substring */) {
  *   countVowels('aEiOu') => 5
  *   countVowels('XYZ') => 1
  */
-function countVowels(/* str */) {
-  throw new Error('Not implemented');
+function countVowels(str) {
+  const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
+  const string = str.split('');
+  let res = [];
+  for (let i = 0; i < string.length; i += 1) {
+    for(let j=0; j<vowels.length; j+=1){
+      string[i] === vowels[j] ? res+=string[i] : 
+    }
+  }
 }
 
 /**
