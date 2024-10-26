@@ -70,7 +70,7 @@ function concatenateStrings(value1, value2) {
  *   getFirstChar('') => ''
  */
 function getFirstChar(value) {
-  return typeof value === 'string' ? value[0] : '';
+  return value.charAt(0);
 }
 
 // console.log(getFirstChar('j;lj'));
@@ -152,7 +152,9 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
+  const valueIndex = str.indexOf(value);
+  const removeItem = str.slice(valueIndex, value.length);
+  return str.replace(removeItem, '');
 }
 
 // console.log(removeFirstOccurrences('I like legends', 'end'));
@@ -172,10 +174,8 @@ function removeFirstOccurrences(str, value) {
 function removeLastOccurrences(str, value) {
   const valueIndex = str.lastIndexOf(value);
   const removeItem = str.slice(valueIndex, value.length);
-  // console.log(removeItem);
   return str.replace(removeItem, '');
 }
-// console.log(removeLastOccurrences('To be or not to be', 'be'));
 
 /**
  * Calculate the sum of character codes of the given string.
@@ -189,9 +189,16 @@ function removeLastOccurrences(str, value) {
  *   sumOfCodes('') => 0
  *   sumOfCodes() => 0
  */
-function sumOfCodes(/* str */) {
-  throw new Error('Not implemented');
+function sumOfCodes(str) {
+  let res = 0;
+
+  for (let i = 0; i < str.length; i += 1) {
+    res += str.charCodeAt(i);
+  }
+  return res;
 }
+
+// console.log(sumOfCodes('12345'));
 
 /**
  * Checks if a string starts with a specific substring.
@@ -204,9 +211,11 @@ function sumOfCodes(/* str */) {
  *   startsWith('Hello World', 'World') => false
  *   startsWith('Hello World', 'Hello') => true
  */
-function startsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function startsWith(str, substr) {
+  return str.startsWith(substr);
 }
+
+// console.log(startsWith('Hello World', 'Hello'));
 
 /**
  * Checks if a string ends with a specific substring.
@@ -219,9 +228,10 @@ function startsWith(/* str, substr */) {
  *   endsWith('Hello World', 'World') => true
  *   endsWith('Hello World', 'Hello') => false
  */
-function endsWith(/* str, substr */) {
-  throw new Error('Not implemented');
+function endsWith(str, substr) {
+  return str.endsWith(substr);
 }
+// console.log(endsWith('Hello World', 'World'));
 
 /**
  * Returns a time string in the "mm:ss" format.
