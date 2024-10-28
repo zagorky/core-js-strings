@@ -1,3 +1,5 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable prefer-const */
 /* *******************************************************************************************
  *                                                                                           *
  * Please read the following tutorial before implementing tasks:                              *
@@ -322,14 +324,15 @@ function containsSubstring(str, substring) {
  */
 function countVowels(str) {
   const vowels = ['a', 'e', 'i', 'o', 'u', 'y', 'A', 'E', 'I', 'O', 'U', 'Y'];
-  const string = str.split('');
-  let res = [];
-  for (let i = 0; i < string.length; i += 1) {
-    for(let j=0; j<vowels.length; j+=1){
-      string[i] === vowels[j] ? res+=string[i] : 
+  let vowelsCounter = 0;
+  for (let char of str) {
+    if (vowels.includes(char)) {
+      vowelsCounter += 1;
     }
   }
+  return vowelsCounter;
 }
+// console.log(countVowels('apple'));
 
 /**
  * Returns true if the string is a palindrome; otherwise false.
@@ -344,9 +347,11 @@ function countVowels(str) {
  *   isPalindrome('apple') => false
  *   isPalindrome('No lemon, no melon') => true
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  const reverseStr = str.split('').reverse().join('');
+  return reverseStr === str;
 }
+// console.log(isPalindrome('madam'));
 
 /**
  * Find the longest word in the sentence. If there are multiple longest words,
@@ -360,9 +365,14 @@ function isPalindrome(/* str */) {
  *   findLongestWord('A long and winding road') => 'winding'
  *   findLongestWord('No words here') => 'words'
  */
-function findLongestWord(/* sentence */) {
-  throw new Error('Not implemented');
+function findLongestWord(sentence) {
+  const dividedSentance = sentence
+    .split(' ')
+    .sort((a, b) => b.length - a.length);
+  return dividedSentance[0];
 }
+
+// console.log(findLongestWord('The quick brown fox'));
 
 /**
  * Returns the string where each word is reversed.
@@ -374,9 +384,15 @@ function findLongestWord(/* sentence */) {
  *   reverseWords('Hello World') => 'olleH dlroW'
  *   reverseWords('The Quick Brown Fox') => 'ehT kciuQ nworB xoF'
  */
-function reverseWords(/* str */) {
-  throw new Error('Not implemented');
+function reverseWords(str) {
+  let newStr = [];
+  const dividedReversedStr = str.split(' ');
+  for (let i = 0; i < dividedReversedStr.length; i += 1) {
+    newStr += `${dividedReversedStr[i].split('').reverse().join('')} `;
+  }
+  return newStr.trim();
 }
+// console.log(reverseWords('Hello World'));
 
 /**
  * Inverts the case of each character in the given string.
@@ -389,9 +405,18 @@ function reverseWords(/* str */) {
  *   invertCase('JavaScript is Fun') => 'jAVAsCRIPT IS fUN'
  *   invertCase('12345') => '12345'
  */
-function invertCase(/* str */) {
-  throw new Error('Not implemented');
+function invertCase(str) {
+  let invertStr = '';
+  for (let i = 0; i < str.length; i += 1) {
+    // eslint-disable-next-line no-unused-expressions
+    str[i].toLowerCase() === str[i]
+      ? (invertStr += str[i].toUpperCase())
+      : (invertStr += str[i].toLowerCase());
+  }
+  return invertStr;
 }
+
+// console.log(invertCase('Hello, World!'));
 
 /**
  * Returns the result of string template and given parameters firstName and lastName.
@@ -406,8 +431,8 @@ function invertCase(/* str */) {
  *   getStringFromTemplate('John','Doe') => 'Hello, John Doe!'
  *   getStringFromTemplate('Chuck','Norris') => 'Hello, Chuck Norris!'
  */
-function getStringFromTemplate(/* firstName, lastName */) {
-  throw new Error('Not implemented');
+function getStringFromTemplate(firstName, lastName) {
+  return `Hello, ${firstName} ${lastName}!`;
 }
 
 /**
