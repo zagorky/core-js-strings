@@ -445,9 +445,10 @@ function getStringFromTemplate(firstName, lastName) {
  *   extractNameFromTemplate('Hello, John Doe!') => 'John Doe'
  *   extractNameFromTemplate('Hello, Chuck Norris!') => 'Chuck Norris'
  */
-function extractNameFromTemplate(/* value */) {
-  throw new Error('Not implemented');
+function extractNameFromTemplate(value) {
+  return value.replace('Hello, ', '').replace('!', '');
 }
+// console.log(extractNameFromTemplate('Hello, John Doe!'));
 
 /**
  * Remove the first and last angle brackets from tag string
@@ -460,9 +461,10 @@ function extractNameFromTemplate(/* value */) {
  *   unbracketTag('<span>') => 'span'
  *   unbracketTag('<a>') => 'a'
  */
-function unbracketTag(/* str */) {
-  throw new Error('Not implemented');
+function unbracketTag(str) {
+  return str.replace(/\W|_/g, '');
 }
+// console.log(unbracketTag('<div>'));
 
 /**
  * Extracts e-mails from single string with e-mails list delimited by semicolons
@@ -479,9 +481,14 @@ function unbracketTag(/* str */) {
  *   ],
  *   'info@gmail.com' => ['info@gmail.com']
  */
-function extractEmails(/* str */) {
-  throw new Error('Not implemented');
+function extractEmails(str) {
+  return str.split(';');
 }
+// console.log(
+//   extractEmails(
+//     'angus.young@gmail.com;brian.johnson@hotmail.com;bon.scott@yahoo.com'
+//   )
+// );
 
 /**
  * Encode specified string with ROT13 cipher
@@ -499,8 +506,10 @@ function extractEmails(/* str */) {
  *    => 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm'
  *
  */
-function encodeToRot13(/* str */) {
-  throw new Error('Not implemented');
+function encodeToRot13(str) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const rot13 = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
+  return str.replace(/[a-z]/gi, (elem) => rot13[alphabet.indexOf(elem)]);
 }
 
 /**
