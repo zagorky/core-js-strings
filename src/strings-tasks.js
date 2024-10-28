@@ -105,7 +105,7 @@ function removeLeadingAndTrailingWhitespaces(value) {
  *   removeLeadingWhitespaces('\t\t\tHello, World! ') => 'Hello, World! '
  */
 function removeLeadingWhitespaces(value) {
-  return value.trimLeft();
+  return value.trimStart();
 }
 
 /**
@@ -154,12 +154,8 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  const valueIndex = str.indexOf(value);
-  const removeItem = str.slice(valueIndex, value.length);
-  return str.replace(removeItem, '');
+  return str.replace(value, '');
 }
-
-// console.log(removeFirstOccurrences('I like legends', 'end'));
 
 /**
  * Remove the last occurrence of a substring from a string.
@@ -174,10 +170,9 @@ function removeFirstOccurrences(str, value) {
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  const valueIndex = str.lastIndexOf(value);
-  const removeItem = str.slice(valueIndex, value.length);
-  return str.replace(removeItem, '');
+  return str.replace(str.slice(str.lastIndexOf(value), value.length), '');
 }
+// console.log(removeLastOccurrences('I like legends', 'end'));
 
 /**
  * Calculate the sum of character codes of the given string.
@@ -193,14 +188,16 @@ function removeLastOccurrences(str, value) {
  */
 function sumOfCodes(str) {
   let res = 0;
-
-  for (let i = 0; i < str.length; i += 1) {
-    res += str.charCodeAt(i);
+  if (str.length > 0) {
+    for (let i = 0; i < str.length; i += 1) {
+      res += str.charCodeAt(i);
+    }
+    return res;
   }
-  return res;
+  return 0;
 }
 
-// console.log(sumOfCodes('12345'));
+console.log(sumOfCodes());
 
 /**
  * Checks if a string starts with a specific substring.
@@ -536,8 +533,62 @@ function encodeToRot13(str) {
  *   'Q♠' => 50
  *   'K♠' => 51
  */
-function getCardId(/* value */) {
-  throw new Error('Not implemented');
+function getCardId(value) {
+  const cards = [
+    'A♣',
+    '2♣',
+    '3♣',
+    '4♣',
+    '5♣',
+    '6♣',
+    '7♣',
+    '8♣',
+    '9♣',
+    '10♣',
+    'J♣',
+    'Q♣',
+    'K♣',
+    'A♦',
+    '2♦',
+    '3♦',
+    '4♦',
+    '5♦',
+    '6♦',
+    '7♦',
+    '8♦',
+    '9♦',
+    '10♦',
+    'J♦',
+    'Q♦',
+    'K♦',
+    'A♥',
+    '2♥',
+    '3♥',
+    '4♥',
+    '5♥',
+    '6♥',
+    '7♥',
+    '8♥',
+    '9♥',
+    '10♥',
+    'J♥',
+    'Q♥',
+    'K♥',
+    'A♠',
+    '2♠',
+    '3♠',
+    '4♠',
+    '5♠',
+    '6♠',
+    '7♠',
+    '8♠',
+    '9♠',
+    '10♠',
+    'J♠',
+    'Q♠',
+    'K♠',
+  ];
+  return cards.indexOf(value);
 }
 
 module.exports = {
