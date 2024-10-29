@@ -154,7 +154,10 @@ function repeatString(str, times) {
  *   removeFirstOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeFirstOccurrences(str, value) {
-  return str.replace(value, '');
+  const index = str.indexOf(value);
+  return index === -1
+    ? str
+    : str.slice(0, index) + str.slice(index + value.length);
 }
 
 /**
@@ -165,14 +168,17 @@ function removeFirstOccurrences(str, value) {
  * @return {string} - The string with the last occurrence of the substring removed.
  *
  * @example
- *   removeLastOccurrences('To be or not to be', 'be') => 'To be or not to '.
+ *   xc => 'To be or not to '.
  *   removeLastOccurrences('I like legends', 'end') => 'I like legs'.
  *   removeLastOccurrences('ABABAB', 'BA') => 'ABAB'.
  */
 function removeLastOccurrences(str, value) {
-  return str.replace(str.slice(str.lastIndexOf(value), value.length), '');
+  const index = str.lastIndexOf(value);
+  return index === -1
+    ? str
+    : str.slice(0, index) + str.slice(index + value.length);
 }
-// console.log(removeLastOccurrences('I like legends', 'end'));
+// console.log(removeLastOccurrences('To be or not to be', 'be'));
 
 /**
  * Calculate the sum of character codes of the given string.
@@ -188,16 +194,15 @@ function removeLastOccurrences(str, value) {
  */
 function sumOfCodes(str) {
   let res = 0;
-  if (str.length > 0) {
-    for (let i = 0; i < str.length; i += 1) {
-      res += str.charCodeAt(i);
-    }
-    return res;
+  if (typeof str !== 'string') return 0;
+
+  for (let i = 0; i < str.length; i += 1) {
+    res += str.charCodeAt(i);
   }
-  return 0;
+  return res;
 }
 
-console.log(sumOfCodes());
+// console.log(sumOfCodes());
 
 /**
  * Checks if a string starts with a specific substring.
@@ -246,10 +251,8 @@ function endsWith(str, substr) {
  *   formatTime(0, 0) => "00:00"
  */
 function formatTime(minutes, seconds) {
-  // const mins = minutes < 10 ? '0'.concat(minutes) : minutes;
-  // const secs = seconds < 10 ? '0'.concat(seconds) : seconds;
-  return `${minutes < 10 ? '0'.concat(minutes) : minutes}:${
-    seconds < 10 ? '0'.concat(seconds) : seconds
+  return `${minutes < 10 ? minutes.toString().padStart(2, '0') : minutes}:${
+    seconds < 10 ? seconds.toString().padStart(2, '0') : seconds
   }`;
 }
 // console.log(formatTime(5, 30));
@@ -345,10 +348,11 @@ function countVowels(str) {
  *   isPalindrome('No lemon, no melon') => true
  */
 function isPalindrome(str) {
-  const reverseStr = str.split('').reverse().join('');
-  return reverseStr === str;
+  const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  const reverseStr = cleanStr.split('').reverse().join('');
+  return reverseStr === cleanStr;
 }
-// console.log(isPalindrome('madam'));
+// console.log(isPalindrome('A man, a plan, a canal, Panama!'));
 
 /**
  * Find the longest word in the sentence. If there are multiple longest words,
